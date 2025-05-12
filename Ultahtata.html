@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Tataa</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: pink;
+      font-family: 'Comic Sans MS', cursive;
+      overflow: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 2.5em;
+      color: white;
+      text-shadow: 2px 2px 5px deeppink;
+      animation: wave 3s infinite ease-in-out;
+    }
+
+    @keyframes wave {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(10px); }
+    }
+
+    .cake-container {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -30%);
+      animation: cakeWiggle 3s infinite ease-in-out;
+    }
+
+    .candle {
+      width: 10px;
+      height: 30px;
+      background-color: gold;
+      margin: 0 auto;
+      border-radius: 2px;
+      opacity: 0;
+      animation-name: drop, cakeWiggle;
+      animation-duration: 0.5s, 3s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1, infinite;
+      animation-delay: 0s, 1s;
+      position: relative;
+      z-index: 2;
+    }
+
+    .flame {
+      width: 12px;
+      height: 12px;
+      background-color: orange;
+      border-radius: 50%;
+      margin: 0 auto;
+      margin-top: -35px;
+      opacity: 0;
+      animation: flicker 0.3s infinite alternate, drop 0.5s forwards, cakeWiggle 3s infinite ease-in-out;
+      animation-delay: 0.5s, 0.5s, 1s;
+      z-index: 2;
+    }
+
+    .layer {
+      height: 50px;
+      border-radius: 10px;
+      margin: 5px auto;
+      opacity: 0;
+      position: relative;
+      animation: drop 0.8s forwards;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 1.8em;
+      text-shadow: 1px 1px 2px black;
+    }
+
+    .layer:nth-child(3) {
+      width: 120px;
+      background: #ff4d6d;
+      animation-delay: 1s;
+    }
+
+    .layer:nth-child(4) {
+      width: 160px;
+      background: #ff85a1;
+      animation-delay: 1.5s;
+    }
+
+    .layer:nth-child(5) {
+      width: 200px;
+      background: #ffb3c6;
+      animation-delay: 2s;
+    }
+
+    .sprinkles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image:
+        radial-gradient(circle, yellow 3px, transparent 4px),
+        radial-gradient(circle, blue 3px, transparent 4px),
+        radial-gradient(circle, green 3px, transparent 4px),
+        radial-gradient(circle, white 3px, transparent 4px);
+      background-size: 20px 20px;
+      background-repeat: repeat;
+      opacity: 0.7;
+      z-index: 1;
+    }
+
+    .birthday-message {
+      position: absolute;
+      top: 63%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      text-align: center;
+      font-size: 1.2em;
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      text-shadow: 1px 1px 3px deeppink;
+      line-height: 1.6em;
+      white-space: pre-wrap;
+      animation: moveUp 2s ease-out forwards;
+      opacity: 0;
+      animation-delay: 2s;
+    }
+
+    .birthday-message span {
+      display: inline-block;
+      opacity: 0;
+      animation: fadeLetter 0.05s forwards;
+    }
+
+    .dino {
+      position: absolute;
+      bottom: 20px;
+      left: -300px;
+      width: 200px;
+      height: auto;
+      animation: dinoEnter 5s ease-out forwards;
+      z-index: 0;
+    }
+
+    .corner {
+      position: fixed;
+      width: 80px;
+      height: auto;
+      z-index: 0;
+    }
+
+    .bottom-left {
+      bottom: 0;
+      left: 0;
+    }
+
+    .bottom-right {
+      bottom: 0;
+      right: 0;
+    }
+
+    .top-left {
+      top: 0;
+      left: 0;
+    }
+
+    .top-right {
+      top: 0;
+      right: 0;
+    }
+
+    @keyframes drop {
+      0% {
+        transform: translateY(-200px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes flicker {
+      from { transform: scale(1); opacity: 0.8; }
+      to { transform: scale(1.2); opacity: 1; }
+    }
+
+    @keyframes fadeLetter {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes moveUp {
+      from {
+        transform: translate(-50%, 20%);
+        opacity: 0;
+      }
+      to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes cakeWiggle {
+      0%, 100% { transform: translate(-50%, -30%) rotate(0deg); }
+      25% { transform: translate(-49%, -30%) rotate(-1deg); }
+      50% { transform: translate(-51%, -30%) rotate(1deg); }
+      75% { transform: translate(-50%, -30%) rotate(-0.5deg); }
+    }
+
+    @keyframes dinoEnter {
+      0% { left: -300px; bottom: 20px; transform: scale(1); }
+      60% { left: 40%; transform: scale(1.05); }
+      70% { left: 41%; transform: scale(1.1); }
+      80% { left: 39%; transform: scale(1.05); }
+      100% { left: 40%; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎂 Happy Birthday Tataa ❤️</h1>
+
+  <!-- Dino lucu -->
+  <img src="nailong.png" alt="Dino Bawa Kue" class="dino" />
+
+  <!-- Audio Happy Birthday -->
+  <audio autoplay loop>
+    <source src="birthdaysong.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Gambar di setiap sudut -->
+  <img src="nailong.png" alt="corner dino" class="corner bottom-left" />
+  <img src="nailong.png" alt="corner dino" class="corner bottom-right" />
+  <img src="nailong.png" alt="corner dino" class="corner top-left" />
+  <img src="nailong.png" alt="corner dino" class="corner top-right" />
+
+  <div class="cake-container">
+    <div class="flame"></div>
+    <div class="candle"></div>
+
+    <div class="layer">
+      <div class="sprinkles"></div>
+      <span>21</span>
+    </div>
+
+    <div class="layer">
+      <div class="sprinkles"></div>
+    </div>
+
+    <div class="layer">
+      <div class="sprinkles"></div>
+    </div>
+  </div>
+
+  <div class="birthday-message" id="message"></div>
+
+  <script>
+    const message = `Selamat Ulang Tahun yang ke-21 yaa Ardhia Pramesti Anantha Cahyani.... Semoga di umur 21 ini menjadi pribadi yang lebih baik dan bisa mewujudkan apa yang diinginkan 💖`;
+    const container = document.getElementById("message");
+
+    [...message].forEach((char, i) => {
+      const span = document.createElement("span");
+      span.textContent = char === " " ? "\u00A0" : char;
+      span.style.animationDelay = `${i * 0.05}s`;
+      container.appendChild(span);
+    });
+  </script>
+
+</body>
+</html>
